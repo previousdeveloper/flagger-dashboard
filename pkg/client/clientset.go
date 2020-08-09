@@ -27,8 +27,8 @@ func NewK8sClient() K8sOperation {
 	if err != nil {
 		panic(err.Error())
 	}
-
 	dynamicClient, err := dynamic.NewForConfig(config)
+
 	if err != nil {
 		panic(err.Error())
 	}
