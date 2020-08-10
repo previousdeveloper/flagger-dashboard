@@ -40,13 +40,12 @@ type K8sOperation interface {
 }
 
 func (k8sApi *K8sClient) GetResourceByNamespace(namespace string) ([]unstructured.Unstructured, error) {
-	virtualServiceGVR := schema.GroupVersionResource{
+	flaggerResource := schema.GroupVersionResource{
 		Group:    flaggerGroup,
 		Version:  flaggerVersion,
 		Resource: flaggerResource,
 	}
-
-	virtualServices, err := k8sApi.k8sRest.Resource(virtualServiceGVR).Namespace(namespace).List(context.Background(), metav1.ListOptions{})
+	virtualServices, err := k8sApi.k8sRest.Resource(flaggerResource).Namespace(namespace).List(context.Background(), metav1.ListOptions{})
 	if err != nil {
 		return nil, err
 	}
